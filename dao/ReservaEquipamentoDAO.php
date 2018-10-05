@@ -1,6 +1,13 @@
 <?php
-    include_once './'
+    include_once './classes/ReservaEquipamento.php';
+    include_once './bd/PDOFactory.php';
 
+
+    class ReservaEquipamentoDAO{
+
+
+
+    }
 
 
 
