@@ -22,21 +22,21 @@
         }
 
         public function listar(){
-            $query = 'SELECT * FROM produtos';
+            $query = 'SELECT * FROM usuario';
             $pdo = PDOFactory::getConexao();
 
             $comando = $pdo->prepare($query);
             $comando->execute();
-            $produtos=array();
+            $usuarios=array();
             while($row = $comando->fetch(PDO::FETCH_OBJ)){
-                $usuarios[] = new Usuario($row->id,$row->tipo,$row->nome,$row->nomeUsuario);
+                $usuarios[] = new Usuario($row->idUsuario,$row->tipo,$row->nome,$row->nomeUsuario,$row->senha);
             }
             
             return $usuarios;
         }
 
         public function atualizar(Usuario $usuario){
-            $sql = "UPDATE usuario SET nome=:nome, nomeUsuario=:nomeUsuario, senha=:senha WHERE id=:id";
+            $sql = "UPDATE usuario SET nome=:nome, nomeUsuario=:nomeUsuario, senha=:senha WHERE idUsuario=:idUsuario";
             $pdo = PDOFactory::getConexao();
             
             $comando = $pdo->prepare($sql);
@@ -49,25 +49,25 @@
         }
 
         public function deletar($id){
-            $sql = "DELETE from usuario WHERE id=:id";
+            $sql = "DELETE from usuario WHERE idUsuario=:idUsuario";
             $pdo = PDOFactory::getConexao();
 
             $comando = $pdo->prepare($sql);
-            $comando->bindParam(":id", $id);
+            $comando->bindParam(":idUsuario", $id);
             $comando->execute();
 
         }
 
         public function buscarId($id){
-            $query = 'SELECT * FROM usuario WHERE id=:id';
+            $query = 'SELECT * FROM usuario WHERE idUsuario=:idUsuario';
             $pdo = PDOFactory::getConexao();
             
             $comando = $pdo->prepare($query);
-            $comando->bindParam(":id", $id);
+            $comando->bindParam(":idUsuario", $id);
             $comando->execute();
 
             $result = $comando->fetch(PDO::FETCH_OBJ);
-            return new Usuario($result->id, $result->tipo, $result->nome, $result->nomeUsuario, $result->senha);
+            return new Usuario($result->idUsuario, $result->tipo, $result->nome, $result->nomeUsuario, $result->senha);
 
         }
     }

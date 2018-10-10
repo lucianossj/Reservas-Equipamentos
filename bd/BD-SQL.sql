@@ -7,18 +7,12 @@ CREATE TABLE Usuario (
 PRIMARY KEY(idUsuario));
 
 CREATE TABLE Equipamento (
-  idEquipamento INTEGER UNSIGNED  NOT NULL   AUTO_INCREMENT,
-  idUsuario INTEGER NOT NULL  ,
+  idEquipamento INTEGER NOT NULL   AUTO_INCREMENT,
   tipo VARCHAR(20)  NULL  ,
   numPatrimonio INT  NULL  ,
   numSerie VARCHAR(20)  NULL  ,
   statusEquipamento VARCHAR(20)  NULL    ,
-PRIMARY KEY(idEquipamento)  ,
-INDEX Equipamento_FKIndex1(idUsuario),
-  FOREIGN KEY(idUsuario)
-    REFERENCES Usuario(idUsuario)
-      ON DELETE NO ACTION
-      ON UPDATE NO ACTION);
+PRIMARY KEY(idEquipamento));
 
 CREATE TABLE ReservaEquipamento (
   idReservaEquipamento INTEGER UNSIGNED  NOT NULL   AUTO_INCREMENT,

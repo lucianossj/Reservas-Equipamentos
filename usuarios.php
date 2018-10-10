@@ -63,7 +63,7 @@ switch($request_method){
 
             $usuario_json = json_encode($usuario);
             header('Content-Type:application/json');
-            echo($produto_json);
+            echo($usuario_json);
         }
         break;
 
@@ -77,7 +77,9 @@ switch($request_method){
 
             $usuario_json = json_encode($usuario);
             header('Content-Type:application/json');
-            echo($produto_json);
+            echo($usuario_json);
+
+            break;
         }
 
     default:

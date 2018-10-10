@@ -1,0 +1,5 @@
+RewriteEngine On # Turn on the rewriting engine
+RewriteRule ^usuarios/?$ usuarios.php [NC,L]
+RewriteRule ^usuarios/([0-9]+)/?$ usuarios.php?id=$1 [NC,L]
+RewriteRule ^equipamentos/?$ equipamentos.php [NC,L]
+RewriteRule ^equipamentos/([0-9]+)/?$ equipamentos.php?id=$1 [NC,L]
