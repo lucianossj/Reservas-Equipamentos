@@ -5,13 +5,14 @@
     class UsuarioDAO {
         public function inserir(Usuario $usuario){
             
-            $sql = "INSERT INTO usuario(tipo, nome, nomeUsuario, senha) VALUES (:tipo, :nome, :nomeUsuario, :senha);";
+            $sql = "INSERT INTO usuario(tipo, nome, nomeUsuario, senha, email) VALUES (:tipo, :nome, :nomeUsuario, :senha, :email);";
             $pdo = PDOFactory::getConexao();
             
             $comando = $pdo->prepare($sql);
             $comando->bindParam(":tipo",$usuario->tipo);
             $comando->bindParam(":nome",$usuario->nome);
             $comando->bindParam(":nomeUsuario",$usuario->nomeUsuario);
+            $comando->bindParam(":email",$usuario->email);
             $comando->bindParam(":senha",$usuario->senha);
             $comando->execute();
 
@@ -29,20 +30,21 @@
             $comando->execute();
             $usuarios=array();
             while($row = $comando->fetch(PDO::FETCH_OBJ)){
-                $usuarios[] = new Usuario($row->idUsuario,$row->tipo,$row->nome,$row->nomeUsuario,$row->senha);
+                $usuarios[] = new Usuario($row->idUsuario,$row->tipo,$row->nome,$row->nomeUsuario,$row->senha,$row->email);
             }
             
             return $usuarios;
         }
 
         public function atualizar(Usuario $usuario){
-            $sql = "UPDATE usuario SET nome=:nome, nomeUsuario=:nomeUsuario, senha=:senha WHERE idUsuario=:idUsuario";
+            $sql = "UPDATE usuario SET nome=:nome, nomeUsuario=:nomeUsuario, senha=:senha, email=:email WHERE idUsuario=:idUsuario";
             $pdo = PDOFactory::getConexao();
             
             $comando = $pdo->prepare($sql);
             $comando->bindParam(":nome", $usuario->nome);
             $comando->bindParam(":nomeUsuario", $usuario->nomeUsuario);
             $comando->bindParam(":senha", $usuario->senha);
+            $comando->bindParam(":email", $usuario->email);
             $comando->bindParam(":idUsuario", $usuario->idUsuario);
             $comando->execute();
         
@@ -67,7 +69,7 @@
             $comando->execute();
 
             $result = $comando->fetch(PDO::FETCH_OBJ);
-            return new Usuario($result->idUsuario, $result->tipo, $result->nome, $result->nomeUsuario, $result->senha);
+            return new Usuario($result->idUsuario, $result->tipo, $result->nome, $result->nomeUsuario, $result->senha, $result->email);
 
         }
     }

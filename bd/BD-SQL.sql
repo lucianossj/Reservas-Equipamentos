@@ -1,3 +1,7 @@
+CREATE DATABASE TIULBRA;
+
+USE TIULBRA;
+
 CREATE TABLE Usuario (
   idUsuario INTEGER NOT NULL   AUTO_INCREMENT,
   tipo VARCHAR(20)  NULL ,
@@ -14,23 +18,19 @@ CREATE TABLE Equipamento (
   statusEquipamento VARCHAR(20)  NULL    ,
 PRIMARY KEY(idEquipamento));
 
+
 CREATE TABLE ReservaEquipamento (
-  idReservaEquipamento INTEGER UNSIGNED  NOT NULL   AUTO_INCREMENT,
-  idUsuario INTEGER UNSIGNED  NOT NULL  ,
-  Equipamento_idEquipamento INTEGER UNSIGNED  NOT NULL  ,
+  idReservaEquipamento INTEGER NOT NULL   AUTO_INCREMENT,
+  idUsuario INTEGER NOT NULL  ,
+  idEquipamento INTEGER  NOT NULL  ,
   numSala INT  NULL  ,
   responsavel VARCHAR(20)  NULL  ,
   curso VARCHAR(20)  NULL  ,
   disciplina VARCHAR(20)  NULL    ,
-PRIMARY KEY(idReservaEquipamento)  ,
-INDEX ReservaEquipamento_FKIndex1(Equipamento_idEquipamento)  ,
-INDEX ReservaEquipamento_FKIndex2(idUsuario),
-  FOREIGN KEY(Equipamento_idEquipamento)
-    REFERENCES Equipamento(idEquipamento)
-      ON DELETE NO ACTION
-      ON UPDATE NO ACTION,
-  FOREIGN KEY(idUsuario)
-    REFERENCES Usuario(idUsuario)
-      ON DELETE NO ACTION
-      ON UPDATE NO ACTION);
+PRIMARY KEY(idReservaEquipamento),
+FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario),
+FOREIGN KEY (idEquipamento) REFERENCES equipamento(idEquipamento)
+);
+
+
 
