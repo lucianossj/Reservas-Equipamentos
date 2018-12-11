@@ -61,6 +61,7 @@
         }
 
         public function buscarId($id){
+            
             $query = 'SELECT * FROM usuario WHERE idUsuario=:idUsuario';
             $pdo = PDOFactory::getConexao();
             
@@ -72,6 +73,7 @@
             return new Usuario($result->idUsuario, $result->tipo, $result->nome, $result->nomeUsuario, $result->senha, $result->email);
 
         }
+
     }
 
 ?>
