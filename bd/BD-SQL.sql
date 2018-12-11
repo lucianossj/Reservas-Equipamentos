@@ -8,6 +8,7 @@ CREATE TABLE Usuario (
   nome VARCHAR(20)  NULL  ,
   nomeUsuario VARCHAR(20)  NULL  ,
   senha VARCHAR(20)  NULL    ,
+  email TEXT  NULL    ,
 PRIMARY KEY(idUsuario));
 
 CREATE TABLE Equipamento (

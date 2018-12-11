@@ -3,17 +3,17 @@
 include_once 'classes/Usuario.php';
 include_once 'dao/UsuarioDAO.php';
 
-if(version_compare(phpversion(), '7.1', '>=')){
+if (version_compare(phpversion(), '7.1', '>=')) {
     ini_set('serialize_precision', -1);
 }
 
 $request_method = $_SERVER["REQUEST_METHOD"];
 
-switch($request_method){
+switch ($request_method) {
 
     case 'GET':
 
-        if(!empty($_GET["id"])){
+        if (!empty($_GET["id"])) {
             $id = intval($_GET["id"]);
 
             $dao = new UsuarioDAO;
@@ -21,15 +21,14 @@ switch($request_method){
 
             $usuario_json = json_encode($usuario);
             header('Content-Type:application/json');
-            echo($usuario_json);
-        }
-        else{
+            echo ($usuario_json);
+        } else {
             $dao = new UsuarioDAO;
             $usuarios = $dao->listar();
 
             $usuario_json = json_encode($usuarios);
             header('Content-Type:application/json');
-            echo($usuario_json);
+            echo ($usuario_json);
         }
         break;
 
@@ -46,13 +45,12 @@ switch($request_method){
         header('HTTP/1.1 201 Created');
         header('Content-Type:application/json');
 
-        echo($usuario_json);
+        echo ($usuario_json);
 
         break;
 
     case 'PUT':
-        if(!empty($_GET["id"]))
-        {
+        if (!empty($_GET["id"])) {
             $id = intval($_GET["id"]);
             $data = file_get_contents("php://input");
             $var = json_decode($data);
@@ -63,12 +61,12 @@ switch($request_method){
 
             $usuario_json = json_encode($usuario);
             header('Content-Type:application/json');
-            echo($usuario_json);
+            echo ($usuario_json);
         }
         break;
 
     case 'DELETE':
-        if(!empty($_GET["id"])){
+        if (!empty($_GET["id"])) {
             $id = intval($_GET["id"]);
 
             $dao = new UsuarioDAO;
@@ -77,7 +75,7 @@ switch($request_method){
 
             $usuario_json = json_encode($usuario);
             header('Content-Type:application/json');
-            echo($usuario_json);
+            echo ($usuario_json);
 
             break;
         }
@@ -87,5 +85,3 @@ switch($request_method){
         break;
 
 }
-
-?>
