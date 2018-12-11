@@ -37,9 +37,7 @@ switch($request_method){
         $data = file_get_contents("php://input");
         $var = json_decode($data);
 
-        echo($var->senha);
-
-        $usuario = new Usuario(0, $var->tipo, $var->nome, $var->nomeUsuario, $var->senha);
+        $usuario = new Usuario(0, $var->tipo, $var->nome, $var->nomeUsuario, $var->senha, $var->email);
 
         $dao = new UsuarioDAO;
         $usuario = $dao->inserir($usuario);
