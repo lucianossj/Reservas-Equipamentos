@@ -54,7 +54,7 @@ switch ($request_method) {
             $id = intval($_GET["id"]);
             $data = file_get_contents("php://input");
             $var = json_decode($data);
-            $usuario = new Usuario($id, $var->tipo, $var->nome, $var->nomeUsuario, $var->senha);
+            $usuario = new Usuario($id, $var->tipo, $var->nome, $var->nomeUsuario, $var->senha, $var->email);
 
             $dao = new UsuarioDAO;
             $dao->atualizar($usuario);
